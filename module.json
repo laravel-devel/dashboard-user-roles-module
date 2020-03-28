@@ -1,0 +1,13 @@
+{
+    "name": "DevelUserRoles",
+    "alias": "develuserroles",
+    "description": "DevelDashboard module that allows managing user roles.",
+    "keywords": [],
+    "order": 3,
+    "providers": [
+        "Modules\\DevelUserRoles\\Providers\\DevelUserRolesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": ["develdashboard"]
+}

@@ -1,0 +1,26 @@
+{
+    "name": "devel/devel-user-roles-module",
+    "description": "Adds CRUD for user roles to devel/devel-dashboard-module",
+    "type": "devel-module",
+    "authors": [
+        {
+            "name": "Alexander Zavyalov",
+            "email": "alex@voerro.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\DevelUserRoles\\Providers\\DevelUserRolesServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\DevelUserRoles\\": ""
+        }
+    }
+}

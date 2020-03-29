@@ -178,6 +178,6 @@ class CrudTest extends TestCase
             ->assertStatus(200);
 
         // Make sure the role is still default
-        $this->assertEquals(1, $defaultRole->fresh->default);
+        $this->assertEquals(1, $defaultRole->fresh()->default);
     }
 }

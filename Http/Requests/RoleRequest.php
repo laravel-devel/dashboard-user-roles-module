@@ -14,11 +14,6 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'key' => [
-                'required',
-                'string',
-                'max:191',
-            ],
             'name' => [
                 'required',
                 'string',
@@ -35,7 +30,12 @@ class RoleRequest extends FormRequest
         ];
 
         if (!$this->route('id')) {
-            $rules['key'][] = 'unique:devel_user_roles,key';
+            $rules['key'] = [
+                'required',
+                'string',
+                'max:191',
+                'unique:devel_user_roles,key'
+            ];
         }
 
         return $rules;

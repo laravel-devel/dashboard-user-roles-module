@@ -41,7 +41,11 @@ class RolesController extends Controller
             'create' => ['dashboard.develuserroles.roles.create'],
             'edit' => ['dashboard.develuserroles.roles.edit', ':key'],
         ]);
-        
+
+        if (request('id')) {
+            $role = Role::find(request('id'));
+        }
+
         $this->setForm([
             'Main' => [
                 [
@@ -61,6 +65,9 @@ class RolesController extends Controller
                     'type' => 'checkbox',
                     'name' => 'default',
                     'label' => 'Default',
+                    'attrs' => [
+                        'disabled' => !empty(request('id')) && $role->default,
+                    ],
                 ],
             ],
         ]);
@@ -130,7 +137,7 @@ class RolesController extends Controller
         if (!$object) {
             return 'Item with provided id was not found!';
         }
-        
+
         if ($object->default) {
             return 'The default role cannot be deleted!';
         }
@@ -157,9 +164,15 @@ class RolesController extends Controller
             $request->request->remove('permissions');
         }
 
-        // The key of an existing role cannot be updated
         if ($item) {
+            // The key of an existing role cannot be updated
             unset($values['key']);
+
+            // The default role cannot be made non-default, because there will
+            // be no default roles
+            if ($item->default) {
+                $values['default'] = true;
+            }
         }
 
         return $values;
@@ -192,7 +205,7 @@ class RolesController extends Controller
                 }
             }
         }
-        
+
         return $permissions;
     }
 }

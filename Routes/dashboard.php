@@ -11,13 +11,13 @@ Route::group([
             'as' => 'develuserroles.roles.index',
             'uses' => 'RolesController@index',
             'dashboardSidebar' => 'Manage Users->' . config('develuserroles.display_name'),
-            'permissions' => 'user_roles.list',
+            'permissions' => 'user_roles.browse',
         ]);
 
         Route::get('/list', [
             'as' => 'develuserroles.roles.get',
             'uses' => 'RolesController@get',
-            'permissions' => 'user_roles.list',
+            'permissions' => 'user_roles.browse',
         ]);
 
         Route::get('/add', [

@@ -125,24 +125,16 @@ class RolesController extends Controller
      * Determine whether an item can be deleted.
      *
      * @param Request $request
-     * @param mixed $id
+     * @param mixed $item
      * @return mixed
      */
-    protected function canBeDeleted($request, $id)
+    protected function canBeDeleted($request, $item)
     {
-        $model = new $this->modelClass;
-
-        $object = ($this->model())::where($model->getRouteKeyName(), $id)->first();
-
-        if (!$object) {
-            return 'Item with provided id was not found!';
-        }
-
-        if ($object->default) {
+        if ($item->default) {
             return 'The default role cannot be deleted!';
         }
 
-        if ($object->key === 'root') {
+        if ($item->key === 'root') {
             return 'The root role cannot be deleted!';
         }
 
